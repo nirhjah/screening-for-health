@@ -6,6 +6,8 @@ import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -34,6 +37,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
@@ -48,7 +52,7 @@ import nz.ac.uclive.nse41.cancersociety.utilities.responsiveFontSize
 import nz.ac.uclive.nse41.cancersociety.utilities.saveLogToFile
 
 /**
- * The Screening support services page is shown after the barriers to getting screened screen.
+ * The Screening support services page shows information on services available
  */
 @Composable
 fun ScreeningSupportServicesScreen(navController: NavController, fullSequence: Boolean, cancerType: String?) {
@@ -82,7 +86,7 @@ fun ScreeningSupportServicesScreen(navController: NavController, fullSequence: B
 
                 if (fullSequence) {
                     CustomProgressBar(
-                        currentScreenIndex = 4,
+                        currentScreenIndex = 3,
                         modifier = Modifier.align(Alignment.BottomCenter).zIndex(1f)
                     )
                 }
@@ -99,6 +103,61 @@ fun ScreeningSupportServicesScreen(navController: NavController, fullSequence: B
                         fontSize = responsiveFontSize(),
                         fontWeight = FontWeight.Bold
                     )
+
+
+                    Text(
+                        text = "Screening is within easy reach. We know that getting to important health checks can sometimes be hard,but there are support services available to make it easier.",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center
+                    )
+
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        modifier = Modifier.horizontalScroll(rememberScrollState())
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Image(
+                                painter = painterResource(id = R.drawable.access),
+                                contentDescription = "access",
+                                modifier = Modifier
+                                    .size(150.dp)
+                            )
+                            Text(
+                                text = "Access Made Easy",
+                                fontSize = 25.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Image(
+                                painter = painterResource(id = R.drawable.trust),
+                                contentDescription = "trust",
+                                modifier = Modifier
+                                    .size(150.dp)
+                            )
+                            Text(
+                                text = "Trusted Care",
+                                fontSize = 25.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Image(
+                                painter = painterResource(id = R.drawable.mindset),
+                                contentDescription = "mindset",
+                                modifier = Modifier
+                                    .size(150.dp)
+                            )
+                            Text(
+                                text = "Positive Mindset",
+                                fontSize = 25.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
 
                     //Displays part 1 of screening support services info
                     screeningSupportServicesSubsection?.info?.get(0)?.let {
@@ -129,7 +188,9 @@ fun ScreeningSupportServicesScreen(navController: NavController, fullSequence: B
                         )
                     }
 
+/*
                     Spacer(modifier = Modifier.height(20.dp))
+*/
 
                     Button(
                         onClick = {
@@ -145,44 +206,6 @@ fun ScreeningSupportServicesScreen(navController: NavController, fullSequence: B
                         )
                     ) {
                         Text("Click to find your nearest screening support services!")
-                    }
-
-                    Spacer(modifier = Modifier.height(20.dp))
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 16.dp),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-
-                        //Shows men/women images depending of bowel cancer or other types.
-                        val imageRes2 = if (cancerType == "Bowel Cancer") {
-                            R.drawable.men2
-                        } else {
-                            R.drawable.women2
-                        }
-                        val imageRes3 = if (cancerType == "Bowel Cancer") {
-                            R.drawable.men3
-                        } else {
-                            R.drawable.women3
-                        }
-
-                        Image(
-                            painter = painterResource(id = R.drawable.women1),
-                            contentDescription = "Person 1",
-                            modifier = Modifier.size(200.dp)
-                        )
-                        Image(
-                            painter = painterResource(imageRes2),
-                            contentDescription = "Person 2",
-                            modifier = Modifier.size(200.dp)
-                        )
-                        Image(
-                            painter = painterResource(imageRes3),
-                            contentDescription = "Person 3",
-                            modifier = Modifier.size(200.dp)
-                        )
                     }
                 }
 
@@ -213,15 +236,32 @@ fun ScreeningSupportServicesScreen(navController: NavController, fullSequence: B
                             )
                         }
                     }} else {
-                    Button(
-                        onClick = { navController.navigate("${Screens.CancerHomepage.route}/$cancerType") },
-                        colors = ButtonDefaults.buttonColors(containerColor = Bluey),
+
+                    Row(
                         modifier = Modifier
-                            .align(Alignment.BottomEnd)
+                            .fillMaxWidth()
                             .padding(16.dp)
+                            .align(Alignment.BottomCenter),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.End
+
                     ) {
-                        Text("Finish", fontSize = 40.sp, color = Color.Black)
+
+                        if (cancerType != null) {
+                            CustomButton(
+                                text = "Next",
+                                route = Screens.Final.route,
+                                navController = navController,
+                                fullSequence = fullSequence,
+                                cancerType = cancerType,
+                                enabled = true,
+                                modifier = Modifier
+                                    .align(Alignment.CenterVertically)
+                            )
+                        }
                     }
+
+
                 }
 
 

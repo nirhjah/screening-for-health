@@ -510,7 +510,7 @@ fun WhereToGetScreenedScreen(navController: NavController, fullSequence: Boolean
                             if (cancerType != null) {
                             CustomButton(
                                 text = "Next",
-                                route = "${Screens.Quiz.route}/WhereToGetScreened/BarriersToGettingScreened",
+                                route = "${Screens.Quiz.route}/WhereToGetScreened/ScreeningSupportServices",
                                 navController = navController,
                                 fullSequence = fullSequence,
                                 cancerType = cancerType,

@@ -142,7 +142,7 @@ fun CancerHomepageScreen(navController: NavController, cancerType: String) {
                                     "\nWhat is screening?: Learn what screening is in simple terms.\n" +
                                     "\nWho can get screened?: Learn the ages of who can get screened for " + cancerType + ".\n" +
                                     "\nWhere to get screened?: Learn where you can get screened for " + cancerType + "!\n" +
-                                    "\nBarriers to getting screened: Learn about some common barriers people face, and what support there is available!\n" +
+                                    "\nScreening support services: Learn what support there is available!\n" +
                                     "\nOr learn them all!: Learn all 4 topics in one go, with quiz questions throughout the process to test your knowledge." ) },
                             confirmButton = {
                                 Button(onClick = { showDialog = false }) {
@@ -158,7 +158,6 @@ fun CancerHomepageScreen(navController: NavController, cancerType: String) {
                         modifier = Modifier
                             .padding(start = start, top = 0.dp)
                             .align(Alignment.Start)
-                            .semantics { testTag = "cancerHomepageTitle" }
                     ) {
                         Text(
                             text = cancerType,
@@ -168,6 +167,7 @@ fun CancerHomepageScreen(navController: NavController, cancerType: String) {
                             color = Color.Black,
                             modifier = Modifier
                                 .align(Alignment.CenterVertically)
+                                .semantics { testTag = "cancerHomepageTitle" }
                         )
 
 
@@ -401,7 +401,7 @@ fun CancerHomepageScreen(navController: NavController, cancerType: String) {
                                         contentColor = Color.Black),
                                     modifier = Modifier
                                         .size(width = 200.dp, height = 200.dp)
-                                        .clickable { navController.navigate("${Screens.BarriersToGettingScreened.route}/$fullSequence/$cancerType") }
+                                        .clickable { navController.navigate("${Screens.ScreeningSupportServices.route}/$fullSequence/$cancerType") }
 
                                 ) {
                                     Box(
@@ -414,14 +414,14 @@ fun CancerHomepageScreen(navController: NavController, cancerType: String) {
                                             modifier = Modifier.padding(16.dp)
                                         ) {
                                             Icon(
-                                                painter = painterResource(id = R.drawable.barriers_icon),
+                                                painter = painterResource(id = R.drawable.suppservices_icon),
                                                 contentDescription = "Barrier Icon",
                                                 tint = Color.Black,
                                                 modifier = Modifier.size(48.dp)
                                             )
 
                                             Text(
-                                                text = "Barriers to getting screened",
+                                                text = "Screening support services",
                                                 fontWeight = FontWeight.ExtraBold,
                                                 modifier = Modifier.padding(16.dp),
                                                 textAlign = TextAlign.Center,
