@@ -1,6 +1,5 @@
 package nz.ac.uclive.nse41.cancersociety.navigation
 
-import BarriersToGettingScreenedScreen
 import MainMenuScreen
 import WhatIsScreening
 import androidx.compose.runtime.Composable
@@ -85,19 +84,6 @@ fun NavGraph (navController: NavHostController) {
             val fullSequence = backStackEntry.arguments?.getBoolean("fullSequence") ?: false
             val cancerType = backStackEntry.arguments?.getString("cancerType")
             WhereToGetScreenedScreen(navController, fullSequence, cancerType)
-        }
-
-        composable(
-            route = "${Screens.BarriersToGettingScreened.route}/{fullSequence}/{cancerType}",
-            arguments = listOf(
-                navArgument("fullSequence") { type = NavType.BoolType },
-                navArgument("cancerType") { type = NavType.StringType },
-
-                )
-        ) { backStackEntry ->
-            val fullSequence = backStackEntry.arguments?.getBoolean("fullSequence") ?: false
-            val cancerType = backStackEntry.arguments?.getString("cancerType")
-            BarriersToGettingScreenedScreen(navController, fullSequence, cancerType)
         }
 
 

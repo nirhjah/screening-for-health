@@ -67,7 +67,7 @@ fun FinalScreen(navController: NavController, fullSequence: Boolean, cancerType:
 
                 if (fullSequence) {
                     CustomProgressBar(
-                        currentScreenIndex = 5,
+                        currentScreenIndex = 4,
                         modifier = Modifier.align(Alignment.BottomCenter).zIndex(1f)
                     )
                 }
@@ -87,7 +87,7 @@ fun FinalScreen(navController: NavController, fullSequence: Boolean, cancerType:
                     )
 
                     Text(
-                        text = "Congratulations, you've gone through all topics for $cancerType! Head back to the homepage to revisit the topics or check out the other cancers!",
+                        text = "Congratulations, you've gone through all topics for $cancerType! Go back to the homepage to revisit this section or find out about the other cancer screening programmes in Aotearoa, New Zealand.",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
@@ -95,14 +95,24 @@ fun FinalScreen(navController: NavController, fullSequence: Boolean, cancerType:
 
 
                     Text(
-                        text = "If you have any concerns, talk to your doctor or health professional, or call the cancer information line on 0800 226 237",
+                        text = "Finding cancer early can increase positive outcomes",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center
                     )
 
-
-
+                    Text(
+                        text = "If you are worried that you or someone you care about have signs or symptoms of cancer, or you notice something unusual for you or a loved one please talk to your doctor or trusted health professional soon.",
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center
+                    )
+                    Text(
+                        text = "This does not mean that you or a loved one has cancer but it is important to get it checked by your doctor. The Cancer Information Helpline is available on 0800 226 237 for information and support." ,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center
+                    )
 
 
                     Spacer(modifier = Modifier.height(20.dp))
